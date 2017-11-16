@@ -1,0 +1,37 @@
+
+# eclipse
+
+.project
+.classpath
+.settings/
+
+# build
+
+bin/
+target/
+.cache*
+
+# ???
+
+.attach*
+
+# maven
+
+pom.flat.xml
+pom.xml.flatten
+release.properties
+pom.xml.releaseBackup
+
+# jetbrain
+.idea/
+*.iml
+
+# r project
+.RData
+.Rhistory
+
+# ???
+.~lock*
+
+# aspect-j 
+_ajdump/

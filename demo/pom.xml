@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.carrotgarden.a</groupId>
+        <artifactId>carrot-a</artifactId>
+        <version>0-SNAPSHOT</version>
+        <relativePath>../a</relativePath>
+    </parent>
+
+    <groupId>com.carrotgarden.demo</groupId>
+    <artifactId>heroku-demo-main</artifactId>
+    <version>${revision}</version>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.typesafe.scala-logging</groupId>
+            <artifactId>scala-logging_${version.scala.gen}</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+<!--             <plugin> -->
+<!--                 <groupId>org.apache.maven.plugins</groupId> -->
+<!--                 <artifactId>maven-shade-plugin</artifactId> -->
+<!--                 <executions> -->
+<!--                     <execution> -->
+<!--                         <phase>package</phase> -->
+<!--                         <goals> -->
+<!--                             <goal>shade</goal> -->
+<!--                         </goals> -->
+<!--                         <configuration> -->
+<!--                             <finalName>${project.artifactId}</finalName> -->
+<!--                             <transformers> -->
+<!--                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"> -->
+<!--                                     <mainClass>heroku.demo.main.Main</mainClass> -->
+<!--                                 </transformer> -->
+<!--                             </transformers> -->
+<!--                         </configuration> -->
+<!--                     </execution> -->
+<!--                 </executions> -->
+<!--             </plugin> -->
+
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>2.0.1</version>
+                <configuration>
+                    <appName>random-scalor</appName>
+                    <processTypes>
+<!--                         <web>java -jar target/heroku-demo-main.jar</web> -->
+                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* heroku.demo.main.Main</web>
+                    </processTypes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
